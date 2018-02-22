@@ -25,3 +25,6 @@ install:
 	$(IDRIS) --install $(IPKG)
 
 rebuild: clean build
+
+test: build
+	@cd test && bash runtests.sh

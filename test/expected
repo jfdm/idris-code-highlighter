@@ -1,0 +1,181 @@
+\documentclass{article}
+\usepackage{fancyvrb}
+\usepackage[usenames]{xcolor}
+\newcommand{\IdrisData}[1]{\textcolor{red}{#1}}
+\newcommand{\IdrisType}[1]{\textcolor{blue}{#1}}
+\newcommand{\IdrisBound}[1]{\textcolor{magenta}{#1}}
+\newcommand{\IdrisFunction}[1]{\textcolor{green}{#1}}
+\newcommand{\IdrisKeyword}[1]{{\underline{#1}}}
+\newcommand{\IdrisImplicit}[1]{{\itshape \IdrisBound{#1}}}
+
+
+\begin{document}
+% START CODE
+\begin{Verbatim}[commandchars=\\\{\}]
+
+\IdrisKeyword{module} Foobar
+
+\IdrisKeyword{data} \IdrisType{Vect} : \IdrisType{\IdrisType{Nat}} -> \IdrisBound{\IdrisBound{ty}} -> \IdrisType{Type} \IdrisKeyword{where}
+  \IdrisData{Nil} : \IdrisType{\IdrisType{Vect}} \IdrisData{\IdrisData{Z}} \IdrisBound{\IdrisBound{ty}}
+  \IdrisData{(::)} : (\IdrisBound{element} : \IdrisBound{\IdrisBound{ty}})
+      -> (\IdrisBound{rest}    : \IdrisType{\IdrisType{Vect}} \IdrisBound{\IdrisBound{length}} \IdrisBound{\IdrisBound{ty}})
+      -> \IdrisType{\IdrisType{Vect}} (\IdrisData{\IdrisData{S}} \IdrisBound{\IdrisBound{length}}) \IdrisBound{\IdrisBound{ty}}
+
+\IdrisFunction{vectMap} : (\IdrisBound{func} : \IdrisBound{\IdrisBound{typeA}} -> \IdrisBound{\IdrisBound{typeB}}) -> (\IdrisBound{input} : \IdrisType{\IdrisType{Vect}} \IdrisBound{\IdrisBound{length}} \IdrisBound{\IdrisBound{typeA}}) -> \IdrisType{\IdrisType{Vect}} \IdrisBound{\IdrisBound{length}} \IdrisBound{\IdrisBound{typeB}}
+\IdrisFunction{\IdrisFunction{vectMap}} \IdrisBound{f} \IdrisData{\IdrisData{Nil}}     = \IdrisData{\IdrisData{Nil}}
+\IdrisFunction{\IdrisFunction{vectMap}} \IdrisBound{f} (\IdrisBound{x\IdrisData{\IdrisData{::\IdrisBound{xs}}}}) = \IdrisBound{\IdrisBound{\IdrisBound{\IdrisBound{f}}}} \IdrisBound{\IdrisBound{x}} \IdrisData{\IdrisData{::}} \IdrisFunction{\IdrisFunction{vectMap}} \IdrisBound{\IdrisBound{f}} \IdrisBound{\IdrisBound{xs}}
+
+
+\IdrisFunction{myFirstVect} : \IdrisType{\IdrisType{Vect}} \IdrisFunction{\IdrisFunction{\IdrisData{2}}} \IdrisType{Int}
+\IdrisFunction{\IdrisFunction{myFirstVect}} = \IdrisData{\IdrisData{[\IdrisFunction{\IdrisFunction{\IdrisData{1\IdrisData{\IdrisData{,\IdrisFunction{\IdrisFunction{\IdrisData{10\IdrisData{\IdrisData{]}}}}}}}}}}}}
+
+\IdrisFunction{mySecondVect} : \IdrisType{\IdrisType{Vect}} \IdrisFunction{\IdrisFunction{\IdrisData{2}}} \IdrisType{\IdrisType{Bool}}
+\IdrisFunction{\IdrisFunction{mySecondVect}} = \IdrisFunction{\IdrisFunction{vectMap}} (\textbackslash{}\IdrisBound{x} => \IdrisBound{\IdrisBound{x}} \IdrisFunction{\IdrisFunction{>}} \IdrisFunction{\IdrisFunction{\IdrisFunction{5}}}) \IdrisFunction{\IdrisFunction{myFirstVect}}
+
+
+\IdrisKeyword{namespace} Main
+  \IdrisFunction{main} : \IdrisFunction{\IdrisFunction{IO}} \IdrisType{()}
+  \IdrisFunction{\IdrisFunction{main}} = \IdrisKeyword{do}
+    \IdrisFunction{\IdrisFunction{putStrLn}} \IdrisData{"My First IO"}
+    \IdrisFunction{\IdrisFunction{printLn}} \IdrisFunction{\IdrisFunction{\IdrisFunction{12345}}}
+\end{Verbatim}
+% END CODE
+\end{document}
+<!doctype html><html><head><style>.idris-data { color: red; }
+.idris-type { color: blue; }
+.idris-function {color: green; }
+.idris-keyword { font-weight: bold; }
+.idris-bound { color: purple; }
+.idris-implicit { font-style: italic; }
+.idris-underlined { text-decoration: underline; }</style></head><body><!-- START CODE --><pre>
+<span class="idris-keyword">module</span><!-- closing Keyword--> Foobar
+
+<span class="idris-keyword">data</span><!-- closing Keyword--> <span class="idris-type" title="
+Nat -> ty -> Type">Vect</span><!-- closing Name TypeConstructor "" "Nat -> ty -> Type"--> : <span class="idris-type" title="Natural numbers: unbounded, unsigned integers
+which can be pattern matched.
+Type"><span class="idris-type" title="Natural numbers: unbounded, unsigned integers
+which can be pattern matched.
+Type">Nat</span><!-- closing Name TypeConstructor "Natural numbers: unbounded, unsigned integers\nwhich can be pattern matched." "Type"--></span><!-- closing Name TypeConstructor "Natural numbers: unbounded, unsigned integers\nwhich can be pattern matched." "Type"--> -&gt; <span class="idris-bound"><span class="idris-bound">ty</span><!-- closing Bound False--></span><!-- closing Bound False--> -&gt; <span class="idris-type" title="The type of types
+Type">Type</span><!-- closing Name TypeConstructor "The type of types" "Type"--> <span class="idris-keyword">where</span><!-- closing Keyword-->
+  <span class="idris-data" title="
+Vect 0 ty">Nil</span><!-- closing Name Constructor "" "Vect 0 ty"--> : <span class="idris-type" title="
+Nat -> ty -> Type"><span class="idris-type" title="
+Nat -> ty -> Type">Vect</span><!-- closing Name TypeConstructor "" "Nat -> ty -> Type"--></span><!-- closing Name TypeConstructor "" "Nat -> ty -> Type"--> <span class="idris-data" title="Zero
+Nat"><span class="idris-data" title="Zero
+Nat">Z</span><!-- closing Name Constructor "Zero" "Nat"--></span><!-- closing Name Constructor "Zero" "Nat"--> <span class="idris-bound"><span class="idris-bound">ty</span><!-- closing Bound False--></span><!-- closing Bound False-->
+  <span class="idris-data" title="
+ty -> Vect length ty -> Vect (S length) ty">(::)</span><!-- closing Name Constructor "" "ty -> Vect length ty -> Vect (S length) ty"--> : (<span class="idris-bound">element</span><!-- closing Bound False--> : <span class="idris-bound"><span class="idris-bound">ty</span><!-- closing Bound False--></span><!-- closing Bound False-->)
+      -&gt; (<span class="idris-bound">rest</span><!-- closing Bound False-->    : <span class="idris-type" title="
+Nat -> ty -> Type"><span class="idris-type" title="
+Nat -> ty -> Type">Vect</span><!-- closing Name TypeConstructor "" "Nat -> ty -> Type"--></span><!-- closing Name TypeConstructor "" "Nat -> ty -> Type"--> <span class="idris-bound"><span class="idris-bound">length</span><!-- closing Bound False--></span><!-- closing Bound False--> <span class="idris-bound"><span class="idris-bound">ty</span><!-- closing Bound False--></span><!-- closing Bound False-->)
+      -&gt; <span class="idris-type" title="
+Nat -> ty -> Type"><span class="idris-type" title="
+Nat -> ty -> Type">Vect</span><!-- closing Name TypeConstructor "" "Nat -> ty -> Type"--></span><!-- closing Name TypeConstructor "" "Nat -> ty -> Type"--> (<span class="idris-data" title="Successor
+Nat -> Nat"><span class="idris-data" title="Successor
+Nat -> Nat">S</span><!-- closing Name Constructor "Successor" "Nat -> Nat"--></span><!-- closing Name Constructor "Successor" "Nat -> Nat"--> <span class="idris-bound"><span class="idris-bound">length</span><!-- closing Bound False--></span><!-- closing Bound False-->) <span class="idris-bound"><span class="idris-bound">ty</span><!-- closing Bound False--></span><!-- closing Bound False-->
+
+<span class="idris-function" title="
+(typeA -> typeB) ->
+Vect length typeA -> Vect length typeB">vectMap</span><!-- closing Name Function "" "(typeA -> typeB) ->\nVect length typeA -> Vect length typeB"--> : (<span class="idris-bound">func</span><!-- closing Bound False--> : <span class="idris-bound"><span class="idris-bound">typeA</span><!-- closing Bound False--></span><!-- closing Bound False--> -&gt; <span class="idris-bound"><span class="idris-bound">typeB</span><!-- closing Bound False--></span><!-- closing Bound False-->) -&gt; (<span class="idris-bound">input</span><!-- closing Bound False--> : <span class="idris-type" title="
+Nat -> ty -> Type"><span class="idris-type" title="
+Nat -> ty -> Type">Vect</span><!-- closing Name TypeConstructor "" "Nat -> ty -> Type"--></span><!-- closing Name TypeConstructor "" "Nat -> ty -> Type"--> <span class="idris-bound"><span class="idris-bound">length</span><!-- closing Bound False--></span><!-- closing Bound False--> <span class="idris-bound"><span class="idris-bound">typeA</span><!-- closing Bound False--></span><!-- closing Bound False-->) -&gt; <span class="idris-type" title="
+Nat -> ty -> Type"><span class="idris-type" title="
+Nat -> ty -> Type">Vect</span><!-- closing Name TypeConstructor "" "Nat -> ty -> Type"--></span><!-- closing Name TypeConstructor "" "Nat -> ty -> Type"--> <span class="idris-bound"><span class="idris-bound">length</span><!-- closing Bound False--></span><!-- closing Bound False--> <span class="idris-bound"><span class="idris-bound">typeB</span><!-- closing Bound False--></span><!-- closing Bound False-->
+<span class="idris-function" title="
+(typeA -> typeB) ->
+Vect length typeA -> Vect length typeB"><span class="idris-function" title="
+(typeA -> typeB) ->
+Vect length typeA -> Vect length typeB">vectMap</span><!-- closing Name Function "" "(typeA -> typeB) ->\nVect length typeA -> Vect length typeB"--></span><!-- closing Name Function "" "(typeA -> typeB) ->\nVect length typeA -> Vect length typeB"--> <span class="idris-bound">f</span><!-- closing Bound False--> <span class="idris-data" title="
+Vect 0 ty"><span class="idris-data" title="
+Vect 0 ty">Nil</span><!-- closing Name Constructor "" "Vect 0 ty"--></span><!-- closing Name Constructor "" "Vect 0 ty"-->     = <span class="idris-data" title="
+Vect 0 ty"><span class="idris-data" title="
+Vect 0 ty">Nil</span><!-- closing Name Constructor "" "Vect 0 ty"--></span><!-- closing Name Constructor "" "Vect 0 ty"-->
+<span class="idris-function" title="
+(typeA -> typeB) ->
+Vect length typeA -> Vect length typeB"><span class="idris-function" title="
+(typeA -> typeB) ->
+Vect length typeA -> Vect length typeB">vectMap</span><!-- closing Name Function "" "(typeA -> typeB) ->\nVect length typeA -> Vect length typeB"--></span><!-- closing Name Function "" "(typeA -> typeB) ->\nVect length typeA -> Vect length typeB"--> <span class="idris-bound">f</span><!-- closing Bound False--> (<span class="idris-bound">x<span class="idris-data" title="
+ty -> Vect length ty -> Vect (S length) ty"><span class="idris-data" title="
+ty -> Vect length ty -> Vect (S length) ty">::<span class="idris-bound">xs</span><!-- closing Bound False--></span><!-- closing Name Constructor "" "ty -> Vect length ty -> Vect (S length) ty"--></span><!-- closing Name Constructor "" "ty -> Vect length ty -> Vect (S length) ty"--></span><!-- closing Bound False-->) = <span class="idris-bound"><span class="idris-bound"><span class="idris-bound"><span class="idris-bound">f</span><!-- closing Bound False--></span><!-- closing Bound False--></span><!-- closing Bound False--></span><!-- closing Bound False--> <span class="idris-bound"><span class="idris-bound">x</span><!-- closing Bound False--></span><!-- closing Bound False--> <span class="idris-data" title="
+ty -> Vect length ty -> Vect (S length) ty"><span class="idris-data" title="
+ty -> Vect length ty -> Vect (S length) ty">::</span><!-- closing Name Constructor "" "ty -> Vect length ty -> Vect (S length) ty"--></span><!-- closing Name Constructor "" "ty -> Vect length ty -> Vect (S length) ty"--> <span class="idris-function" title="
+(typeA -> typeB) ->
+Vect length typeA -> Vect length typeB"><span class="idris-function" title="
+(typeA -> typeB) ->
+Vect length typeA -> Vect length typeB">vectMap</span><!-- closing Name Function "" "(typeA -> typeB) ->\nVect length typeA -> Vect length typeB"--></span><!-- closing Name Function "" "(typeA -> typeB) ->\nVect length typeA -> Vect length typeB"--> <span class="idris-bound"><span class="idris-bound">f</span><!-- closing Bound False--></span><!-- closing Bound False--> <span class="idris-bound"><span class="idris-bound">xs</span><!-- closing Bound False--></span><!-- closing Bound False-->
+
+
+<span class="idris-function" title="
+Vect 2 Int">myFirstVect</span><!-- closing Name Function "" "Vect 2 Int"--> : <span class="idris-type" title="
+Nat -> ty -> Type"><span class="idris-type" title="
+Nat -> ty -> Type">Vect</span><!-- closing Name TypeConstructor "" "Nat -> ty -> Type"--></span><!-- closing Name TypeConstructor "" "Nat -> ty -> Type"--> <span class="idris-function" title="Conversion from Integer.
+Num ty => Integer -> ty"><span class="idris-function" title="Conversion from Integer.
+Num ty => Integer -> ty"><span class="idris-data" title="Successor
+Nat -> Nat">2</span><!-- closing Name Constructor "Successor" "Nat -> Nat"--></span><!-- closing Name Function "Conversion from Integer." "Num ty => Integer -> ty"--></span><!-- closing Name Function "Conversion from Integer." "Num ty => Integer -> ty"--> <span class="idris-type" title="Fixed-precision integers of undefined size
+Type">Int</span><!-- closing Name TypeConstructor "Fixed-precision integers of undefined size" "Type"-->
+<span class="idris-function" title="
+Vect 2 Int"><span class="idris-function" title="
+Vect 2 Int">myFirstVect</span><!-- closing Name Function "" "Vect 2 Int"--></span><!-- closing Name Function "" "Vect 2 Int"--> = <span class="idris-data" title="
+ty -> Vect length ty -> Vect (S length) ty"><span class="idris-data" title="
+ty -> Vect length ty -> Vect (S length) ty">[<span class="idris-function" title="Conversion from Integer.
+Num ty => Integer -> ty"><span class="idris-function" title="Conversion from Integer.
+Num ty => Integer -> ty"><span class="idris-data" title="A fixed-precision integer
+Int">1<span class="idris-data" title="
+ty -> Vect length ty -> Vect (S length) ty"><span class="idris-data" title="
+ty -> Vect length ty -> Vect (S length) ty">,<span class="idris-function" title="Conversion from Integer.
+Num ty => Integer -> ty"><span class="idris-function" title="Conversion from Integer.
+Num ty => Integer -> ty"><span class="idris-data" title="A fixed-precision integer
+Int">10<span class="idris-data" title="
+Vect 0 ty"><span class="idris-data" title="
+Vect 0 ty">]</span><!-- closing Name Constructor "" "Vect 0 ty"--></span><!-- closing Name Constructor "" "Vect 0 ty"--></span><!-- closing Name Constructor "A fixed-precision integer" "Int"--></span><!-- closing Name Function "Conversion from Integer." "Num ty => Integer -> ty"--></span><!-- closing Name Function "Conversion from Integer." "Num ty => Integer -> ty"--></span><!-- closing Name Constructor "" "ty -> Vect length ty -> Vect (S length) ty"--></span><!-- closing Name Constructor "" "ty -> Vect length ty -> Vect (S length) ty"--></span><!-- closing Name Constructor "A fixed-precision integer" "Int"--></span><!-- closing Name Function "Conversion from Integer." "Num ty => Integer -> ty"--></span><!-- closing Name Function "Conversion from Integer." "Num ty => Integer -> ty"--></span><!-- closing Name Constructor "" "ty -> Vect length ty -> Vect (S length) ty"--></span><!-- closing Name Constructor "" "ty -> Vect length ty -> Vect (S length) ty"-->
+
+<span class="idris-function" title="
+Vect 2 Bool">mySecondVect</span><!-- closing Name Function "" "Vect 2 Bool"--> : <span class="idris-type" title="
+Nat -> ty -> Type"><span class="idris-type" title="
+Nat -> ty -> Type">Vect</span><!-- closing Name TypeConstructor "" "Nat -> ty -> Type"--></span><!-- closing Name TypeConstructor "" "Nat -> ty -> Type"--> <span class="idris-function" title="Conversion from Integer.
+Num ty => Integer -> ty"><span class="idris-function" title="Conversion from Integer.
+Num ty => Integer -> ty"><span class="idris-data" title="Successor
+Nat -> Nat">2</span><!-- closing Name Constructor "Successor" "Nat -> Nat"--></span><!-- closing Name Function "Conversion from Integer." "Num ty => Integer -> ty"--></span><!-- closing Name Function "Conversion from Integer." "Num ty => Integer -> ty"--> <span class="idris-type" title="Boolean Data Type
+Type"><span class="idris-type" title="Boolean Data Type
+Type">Bool</span><!-- closing Name TypeConstructor "Boolean Data Type" "Type"--></span><!-- closing Name TypeConstructor "Boolean Data Type" "Type"-->
+<span class="idris-function" title="
+Vect 2 Bool"><span class="idris-function" title="
+Vect 2 Bool">mySecondVect</span><!-- closing Name Function "" "Vect 2 Bool"--></span><!-- closing Name Function "" "Vect 2 Bool"--> = <span class="idris-function" title="
+(typeA -> typeB) ->
+Vect length typeA -> Vect length typeB"><span class="idris-function" title="
+(typeA -> typeB) ->
+Vect length typeA -> Vect length typeB">vectMap</span><!-- closing Name Function "" "(typeA -> typeB) ->\nVect length typeA -> Vect length typeB"--></span><!-- closing Name Function "" "(typeA -> typeB) ->\nVect length typeA -> Vect length typeB"--> (\<span class="idris-bound">x</span><!-- closing Bound False--> =&gt; <span class="idris-bound"><span class="idris-bound">x</span><!-- closing Bound False--></span><!-- closing Bound False--> <span class="idris-function" title="
+Ord ty => ty -> ty -> Bool"><span class="idris-function" title="
+Ord ty => ty -> ty -> Bool">&gt;</span><!-- closing Name Function "" "Ord ty => ty -> ty -> Bool"--></span><!-- closing Name Function "" "Ord ty => ty -> ty -> Bool"--> <span class="idris-function" title="Conversion from Integer.
+Num ty => Integer -> ty"><span class="idris-function" title="Conversion from Integer.
+Num ty => Integer -> ty"><span class="idris-function" title="Conversion from Integer.
+Num ty => Integer -> ty">5</span><!-- closing Name Function "Conversion from Integer." "Num ty => Integer -> ty"--></span><!-- closing Name Function "Conversion from Integer." "Num ty => Integer -> ty"--></span><!-- closing Name Function "Conversion from Integer." "Num ty => Integer -> ty"-->) <span class="idris-function" title="
+Vect 2 Int"><span class="idris-function" title="
+Vect 2 Int">myFirstVect</span><!-- closing Name Function "" "Vect 2 Int"--></span><!-- closing Name Function "" "Vect 2 Int"-->
+
+
+<span class="idris-keyword">namespace</span><!-- closing Keyword--> Main
+  <span class="idris-function" title="
+IO ()">main</span><!-- closing Name Function "" "IO ()"--> : <span class="idris-function" title="Interactive programs, describing I/O actions and
+returning a value.
+Type -> Type"><span class="idris-function" title="Interactive programs, describing I/O actions and
+returning a value.
+Type -> Type">IO</span><!-- closing Name Function "Interactive programs, describing I/O actions and\nreturning a value." "Type -> Type"--></span><!-- closing Name Function "Interactive programs, describing I/O actions and\nreturning a value." "Type -> Type"--> <span class="idris-type" title="The canonical single-element type, also known as
+the trivially true proposition.
+Type">()</span><!-- closing Name TypeConstructor "The canonical single-element type, also known as\nthe trivially true proposition." "Type"-->
+  <span class="idris-function" title="
+IO ()"><span class="idris-function" title="
+IO ()">main</span><!-- closing Name Function "" "IO ()"--></span><!-- closing Name Function "" "IO ()"--> = <span class="idris-keyword">do</span><!-- closing Keyword-->
+    <span class="idris-function" title="Output a string to stdout with a trailing newline
+String -> IO ()"><span class="idris-function" title="Output a string to stdout with a trailing newline
+String -> IO ()">putStrLn</span><!-- closing Name Function "Output a string to stdout with a trailing newline" "String -> IO ()"--></span><!-- closing Name Function "Output a string to stdout with a trailing newline" "String -> IO ()"--> <span class="idris-data" title="A string of length 11
+String">"My First IO"</span><!-- closing Name Constructor "A string of length 11" "String"-->
+    <span class="idris-function" title="Output something showable to stdout, with a
+trailing newline
+Show ty => ty -> IO ()"><span class="idris-function" title="Output something showable to stdout, with a
+trailing newline
+Show ty => ty -> IO ()">printLn</span><!-- closing Name Function "Output something showable to stdout, with a\ntrailing newline" "Show ty => ty -> IO ()"--></span><!-- closing Name Function "Output something showable to stdout, with a\ntrailing newline" "Show ty => ty -> IO ()"--> <span class="idris-function" title="Conversion from Integer.
+Num ty => Integer -> ty"><span class="idris-function" title="Conversion from Integer.
+Num ty => Integer -> ty"><span class="idris-function" title="Conversion from Integer.
+Num ty => Integer -> ty">12345</span><!-- closing Name Function "Conversion from Integer." "Num ty => Integer -> ty"--></span><!-- closing Name Function "Conversion from Integer." "Num ty => Integer -> ty"--></span><!-- closing Name Function "Conversion from Integer." "Num ty => Integer -> ty"-->
+</pre><!-- END CODE --></body></html>
